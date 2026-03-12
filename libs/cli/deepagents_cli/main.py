@@ -544,7 +544,7 @@ async def run_textual_cli_async(
     """
     from rich.text import Text
 
-    from deepagents_cli.agent import create_cli_agent
+    from deepagents_cli.agent import create_cli_agent, load_async_subagents
     from deepagents_cli.app import run_textual_app
     from deepagents_cli.config import console, create_model, settings
     from deepagents_cli.model_config import ModelConfigError
@@ -633,8 +633,6 @@ async def run_textual_cli_async(
                 console.print("[red]Sandbox creation failed[/red]")
                 console.print(Text(str(e), style="dim"))
                 sys.exit(1)
-
-        from deepagents_cli.agent import load_async_subagents
 
         async_subagents = load_async_subagents() or None
 
@@ -726,7 +724,7 @@ async def _run_acp_cli_async(
     Returns:
         Exit code for ACP mode.
     """
-    from deepagents_cli.agent import create_cli_agent
+    from deepagents_cli.agent import create_cli_agent, load_async_subagents
     from deepagents_cli.config import create_model, settings
     from deepagents_cli.model_config import ModelConfigError
     from deepagents_cli.tools import fetch_url, http_request, web_search
@@ -772,8 +770,6 @@ async def _run_acp_cli_async(
         sys.stderr.write(msg)
         sys.stderr.flush()
         return 1
-
-    from deepagents_cli.agent import load_async_subagents
 
     async_subagents = load_async_subagents() or None
 

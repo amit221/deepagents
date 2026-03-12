@@ -3139,7 +3139,7 @@ class DeepAgentsApp(App):
         """
         logger.info("Switching model to %s", model_spec)
 
-        from deepagents_cli.agent import create_cli_agent
+        from deepagents_cli.agent import create_cli_agent, load_async_subagents
         from deepagents_cli.model_config import (
             ModelConfigError,
             get_credential_env_var,
@@ -3222,8 +3222,6 @@ class DeepAgentsApp(App):
         prev_provider = settings.model_provider
         prev_context_limit = settings.model_context_limit
         result.apply_to_settings()
-
-        from deepagents_cli.agent import load_async_subagents
 
         try:
             new_agent, new_backend = create_cli_agent(
